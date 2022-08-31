@@ -49,10 +49,7 @@ export default function Register() {
   const containerStyle = {
     backgroundImage:
       "url(https://swall.teahub.io/photos/small/219-2197068_funko-pop-marvel-animation.jpg)",
-    width: "1705px",
-    height: "781px",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
+    height: "100vh",
     backgroundSize: "cover",
   };
 
