@@ -1,0 +1,71 @@
+.columnas {
+  float: left;
+  background-color: white;
+  margin-left: 7%;
+  margin-top: 7%;
+  border: rgb(33, 146, 161) 5px solid;
+  border-radius: 20px;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.columna {
+  float: right;
+  background-color: white;
+  margin-right: 7%;
+  margin-top: 5%;
+  border: rgb(189, 63, 111) 5px solid;
+  border-radius: 20px;
+  padding-bottom: 2%;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+body {
+  background-image: url(https://rrd0146se7f27sb982ywk0o7-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/1392X601_03-1-725x375.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.contenedor {
+  display: inline-flex;
+}
+
+.button {
+  border-radius: 4px;
+  border: 1px solid #23546c;
+  color: #23546c;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button:hover {
+  background: #23546c;
+  color: #fff !important;
+}
+
+.container-fluid {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+}
+
+.logo {
+  font-size: 225%;
+  color: whitesmoke;
+}
+
+.btn-margin {
+  margin-left: 10px;
+}
+
+.signUp {
+  color: #23546c;
+}
+
+
