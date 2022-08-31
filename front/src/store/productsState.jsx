@@ -8,11 +8,12 @@ const initialState = {
 }
 
 export const fetchProducts = createAsyncThunk('PRODUCTS', ()=>{
-  return axios
-      .get("https://dummyjson.com/products")
+    return axios
+      .get("http://localhost:3001/api/funkos")
       .then((response) => {
-        console.log("el resultado del axios: ", response.data.products)
-        return response.data.products
+        console.log("response", response);
+        console.log("el resultado del axios: ", response.data)
+        return response.data
       })
       .catch((error) => error);
     }

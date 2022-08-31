@@ -25,12 +25,12 @@ export default function CartDrawer() {
 
   // Drawer properties & logic
   const [state, setState] = React.useState({
-    right: false,
+    top: false,
   });
   const anchor = "top";
 
   const location = useLocation();
-  
+
   // Close cart when changing URL
   useEffect(() => {
     setState({ ...state, [anchor]: false });

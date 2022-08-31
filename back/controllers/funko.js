@@ -1,4 +1,3 @@
-// Hablar con Ryu que nombre le puso al models de funkoos
 const Funkos = require("../models").Funkos;
 const { Op } = require("sequelize");
 const funko = {}

@@ -13,19 +13,21 @@ import Button from '@mui/material/Button';
 import "./ProductDetails.css";
 //components
 import Footer from "../components/Footer";
+import CartActions from "../commons/CartActions";
 
 const ProductDetails = () => {
-  const { productId } = useParams();
+  const { productName } = useParams();
+  console.log('productName', productName);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.singleProduct.product);
   const singleProductState = useSelector((state) => state.singleProduct);
 
   useEffect(() => {
-    dispatch(getSingleProduct(productId));
+    dispatch(getSingleProduct(productName));
   }, []);
 
 
-  console.log("el product rating is:", product.rating);
+  console.log("el product es:", product);
 
   if (singleProductState.loading) {return <div>Loading...</div>}
   if (singleProductState.error) {return <div>Error: {singleProductState.error}</div>}
@@ -36,7 +38,7 @@ const ProductDetails = () => {
      <Paper className="container" elevation={10}>
 
           <div className="flex-item1">
-            <img src={product.thumbnail} id="productImg" alt="funko"/>
+            <img src={product.image} id="productImg" alt="funko"/>
           </div>
 
 {/*   const containerStyle = {
@@ -53,7 +55,7 @@ const ProductDetails = () => {
 
           <div className="flex-item2">
             <div>
-              <div className="title">{product.title}</div>
+              <div className="title">{product.name}</div>
                 <div className="flex-row">
                   <span className="text">{product.rating}</span>
                   <Rating value={product.rating} precision={0.5} readOnly sx={{marginLeft: "10px"}}/>
@@ -67,6 +69,7 @@ const ProductDetails = () => {
               <span>Quantity:</span>
               <input type="number" defaultValue={1} min={1} placeholder="Qty" id="qtyInput"></input>
               <Button variant="contained">Add to Cart</Button>
+              <CartActions/>
             </div>
           </div>
         
