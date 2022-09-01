@@ -29,6 +29,10 @@ module.exports = {
       admin: {
         type: Sequelize.STRING
       }
+      
+
+      
+
     });
   },
   async down(queryInterface, Sequelize) {

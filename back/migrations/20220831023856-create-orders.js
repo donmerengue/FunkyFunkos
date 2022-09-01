@@ -16,7 +16,10 @@ module.exports = {
       },
       shipmentStatus: {
         type: Sequelize.STRING
-      }
+
+      },
+ 
+
     });
   },
   async down(queryInterface, Sequelize) {

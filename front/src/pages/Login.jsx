@@ -48,11 +48,18 @@ export default function Login() {
       .catch((err) => message.error("Credenciales Incorrectas"));
   };
 
+  const containerStyle = {
+    backgroundImage:
+      "url(https://rrd0146se7f27sb982ywk0o7-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/1392X601_03-1-725x375.jpg)",
+    height: "100vh",
+    backgroundSize: "cover",
+  };
+
   return (
+    <div style={containerStyle}>
     <div className="columnas">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-
         <Box
           sx={{
             marginTop: 8,
@@ -116,6 +123,7 @@ export default function Login() {
           </Box>
         </Box>
       </Container>
+    </div>
     </div>
   );
 }
