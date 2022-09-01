@@ -14,25 +14,50 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      // TODO: define association here
+      
     }
   }
-  Users.init(
-    {
-      // TODO: incoporar validaciones (sacar de rama models de Mechi)
-      username: DataTypes.STRING,
-      fullname: DataTypes.STRING,
-      address: DataTypes.STRING,
-      password: DataTypes.STRING,
-      email: DataTypes.STRING,
-      salt: DataTypes.STRING,
-      admin: DataTypes.STRING,
+  Users.init({
+    username: {
+      type: DataTypes.STRING,
+      unique: true,
     },
+    fullname: {
+      type: DataTypes.STRING,
+     /*  validate: {
+        isAlpha: {
+          args: true,
+          msg: "El nombre completo solo puede contener letras"
+        } 
+      }*/
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    admin: {
+      type: DataTypes.STRING,
+      
+    },
+    salt: { type: DataTypes.STRING }
+  },
     {
       sequelize,
-      modelName: "Users",
-    }
-  );
+      modelName: 'Users',
+      timestamps: false,
+    });
 
   //Hook para hacer el hash del registro de usuario
   Users.beforeCreate((user) => {

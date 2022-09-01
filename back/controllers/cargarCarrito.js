@@ -1,3 +1,4 @@
+const { sequelize } = require("../models");
 
 const cargarCarrito = {};
 
@@ -9,7 +10,6 @@ const OrderItems = require("../models").OrderItems
 cargarCarrito.getItemCart = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const funko = await Funkos.findOne({ where: { id }});
     console.log(funko)
 
@@ -20,21 +20,25 @@ cargarCarrito.getItemCart = async (req, res) => {
   }
 };
 
-cargarCarrito.addItemCart = async(req, res)=>{
-    try {
-        const { id } = req.params;
-        const funko = await Funkos.findOne({ where: { id } });
-        const add = await CartItems.create(funko)
-      return  res.json(add)
-        
-    } catch (error) {
-        return res.status(500).send({message:error.message})
+cargarCarrito.addItemCart = async (req,res)=> {
+     try{
+      
+      const addItem = await OrderItems.create({funko:{frontData:req.body,frontID:req.params.id}})
+      res.json(addItem)
     }
+
+      catch(error){
+        return res.status(500).send({message:error.message})
+
+      }
+
+
 }
+
+
 
 cargarCarrito.deleteCart = async(req, res)=>{
     try {
-      CartItems.destroy({force:true})
     }
     catch(error){
 

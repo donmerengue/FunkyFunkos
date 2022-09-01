@@ -4,21 +4,38 @@ const funko = {}
 
 funko.all = (req, res) => {
   Funkos.findAll()
-    .then((Funkos) => res.status(200).json(Funkos))
-    .catch((err) => console.log(err));
+    .then((funkos) => res.status(200).json(funkos))
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
 
-funko.singleFunko = (req, res) => {
+funko.searchFunko = (req, res) => {
   const {search} = req.params
   Funkos.findAll({
     where: {
       [Op.or]: [
-        {name:search },
-        { description:search },
+        {name: search},
+        {serialNumber: search},
+        {collection: search},
+        {description: search},
       ],
     },
   }).then((funko) => res.status(200).json(funko))
-    .catch((err) => console.log(err));
+  .catch((err) => {
+    res.status(500).json({ message: err.message })
+  })
+};
+
+funko.singleFunko = (req, res) => {
+  const {id} = req.params
+  Funkos.findByPk({
+    where: {id}
+})
+  .then((funko) => res.status(200).json(funko))
+  .catch((err) => {
+    res.status(500).json({ message: err.message })
+  })
 };
 
 funko.addFunko = (req, res) => {
@@ -34,7 +51,9 @@ funko.addFunko = (req, res) => {
     image,
   })
     .then((funko) => res.status(204).json(funko))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
 
 
@@ -48,14 +67,18 @@ funko.putFunko = (req, res) => {
         res.status(204).json(funko)
       );
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
 
 
 funko.deleteFunko = (req, res) => {
   Funkos.destroy({ where: { id: req.params.id } })
-    .then(() => res.sendStatus(204))
-    .catch((err) => console.log(err));
+    .then(() => res.status(204).json())
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
 
 module.exports = funko

@@ -11,7 +11,7 @@ router.post("/logout", user.logout);
 router.get("/all", user.all);
 router.delete("/:id", user.deleteUser);
 router.put("/:id", user.put);
-router.put("/:id/admin", user.putAdminFalse); 
-
+router.put("/:id/noAdmin", user.putAdminFalse); 
+router.put("/:id/admin", user.putAdminTrue); 
 
 module.exports = router;
