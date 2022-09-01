@@ -1,10 +1,6 @@
 // react
 import React from "react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-//redux
-import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../store/productsState";
 //styles
 import theme from "../utils/theme";
 // Material UI
@@ -17,29 +13,11 @@ import {
   Rating,
 } from "@mui/material";
 import { StarBorder } from "@mui/icons-material";
-import edEin from "../assets/ed-ein.png"
+import edEin from "../assets/ed-ein.png";
 // Utils
-import {editProductName} from "../utils/editProductName";
+import { editProductName } from "../utils/editProductName";
 
-
-const ProductsGrid = () => {
-  const productsList = useSelector((state) => state.products.productsList);
-  const productsState = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
-
-  console.log("los productos son", productsList);
-
-  if (productsState.loading) {
-    return <div>Loading...</div>;
-  }
-  if (productsState.error) {
-    return <div>Error: {productsState.error}</div>;
-  }
-
+const ProductsGrid = ({ products }) => {
   return (
     <Container>
       <ImageList
@@ -48,9 +26,9 @@ const ProductsGrid = () => {
           marginTop: "20px",
           gridTemplateColumns:
             "repeat(auto-fill, minmax(280px, 1fr))!important",
-        }}>
-        {productsList.map((product) => {
-          console.log("product de ProductsList", product)
+        }}
+      >
+        {products.map((product) => {
           return (
             <Card key={product.id}>
               <Link to={`/${editProductName(product.name)}/details`}>
@@ -63,6 +41,7 @@ const ProductsGrid = () => {
                     }}
                     // title={product.title}
                     title={product.name}
+                    subtitle={product.collection}
                     position="top"
                   />
                   <img className="imagen"
@@ -86,7 +65,8 @@ const ProductsGrid = () => {
                           <StarBorder
                             sx={{
                               color: "rgba(255,255,255,0.8)",
-                            }}></StarBorder>
+                            }}
+                          ></StarBorder>
                         }
                       />
                     }
@@ -105,7 +85,7 @@ const ProductsGrid = () => {
     //     spacing={10}
     //     className="flex-container mx-auto bg-color"
     //     style={{ margin: "20px 0px", width: "85%" }}>
-    //     {productsList.map((product) => {
+    //     {products.map((product) => {
     //       return (
     //         <Grid item md={3} sm={3} xs={6} key={product.id}>
     //           <ProductCard product={product} />
