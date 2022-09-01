@@ -8,46 +8,29 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveIcon from "@mui/icons-material/Remove";
 import RemoveShoppingCartOutlinedIcon from "@mui/icons-material/RemoveShoppingCartOutlined";
 import { StarRateOutlined } from "@mui/icons-material";
+// Hooks
+import useAuth from "../hooks/useAuth";
 
 const CartActions = () => {
   // Dispatch Redux Actions
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.cart.showCart);
-  const user = useSelector((state) => state.user.userData);
+  const user = useAuth();
+  console.log("user desde cartActions", user);
+  // const user = useSelector((state) => state.user.userData);
   // const counter = useSelector((state) => state.cart.counter);
 
   // Referencia a este producto
   const state = useSelector((state) => state);
-  console.log("STATE desde Product.Details", state);
+  console.log("STATE desde CartActions", state);
   const product = useSelector((state) => state.singleProduct.product);
-  // TODO: pendiente traer la data del usuario
-  // const itemData = { userId: user.id, productId: product.id, quantity: 1 };
-
-  /* const itemDataFake = {
-    userId: user.id,
-    productName: "Funky Funko Name",
-    quantity: 1,
-    total: 100,
-  }; */
-  const itemDataFake = {
-    userId: 1,
-    productName: "Funky Funko Name",
-    quantity: 1,
-    total: 100,
-  };
 
   // Cart State Handlers
   const incrementItemHandler = () => {
-    dispatch(cartActions.increment());
-
-    dispatch(addItemToCart(itemDataFake));
-
-    // FIXME: cambiar itemDataFake por itemData cuando tenga la data del usuario y el producto
-    // axios.post("/api/cart", { itemDataFake }).then((response) => {
-    //   console.log(response.data);
-    //   dispatch(cartActions.loadCart(response.data));
-    // });
+    // dispatch(cartActions.increment());
+    dispatch(addItemToCart([product, user]));
   };
+
   const decrementItemHandler = () => {
     dispatch(cartActions.decrement());
   };

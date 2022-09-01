@@ -12,12 +12,9 @@ const initialState = {
 export const getSingleProduct = createAsyncThunk(
   "SINGLE-PRODUCT",
   (productName) => {
-    console.log("productName", productName);
     return axios
       .get(`http://localhost:3001/api/funkos/${productName}`)
       .then((response) => {
-        console.log("response", response);
-        console.log("el resultado del axios: ", response.data[0]);
         return response.data[0];
       })
       .catch((error) => error);

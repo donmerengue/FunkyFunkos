@@ -31,7 +31,6 @@ const ProductsGrid = () => {
     dispatch(fetchProducts());
   }, []);
 
-  console.log("los productos son", productsList);
 
   if (productsState.loading) {
     return <div>Loading...</div>;

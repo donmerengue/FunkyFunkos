@@ -44,7 +44,7 @@ export default function CartDrawer() {
       return;
     }
     setState({ ...state, [anchor]: open });
-    dispatch(cartActions.toggleCart());
+    // dispatch(cartActions.toggleCart());
   };
 
   const list = (anchor) => (

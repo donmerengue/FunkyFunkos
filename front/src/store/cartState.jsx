@@ -11,27 +11,49 @@ const initialState = {
 
 export const addItemToCart = createAsyncThunk(
   "ADD-ITEM-TO-CART",
-  (productName) => {
-    console.log("productName", productName);
+  ([product, user]) => {
+    const quantity = 6;
+    const total = 1200;
+    const userId = user.id;
+    console.log("PRODUCT", product);
+    console.log("USERRRR", user);
 
     return axios
-      .get(`http://localhost:3001/api/funkos/${productName}`)
+      .post(
+        `http://localhost:3001/api/cart/${product.id}`,
+        { userId },
+        {
+          params: {
+            quantity: quantity,
+            total: total,
+          },
+        },
+        { withCredentials: true }
+      )
       .then((response) => {
-        console.log("response", response);
-        console.log("el resultado del axios: ", response.data[0]);
+        console.log(
+          "el resultado del axios de CartItems: ",
+          response.data[0]
+        );
+
         return response.data[0];
       })
       .catch((error) => error);
   }
+
+  // return axios
+  //   .get(`http://localhost:3001/api/funkos/${product.name}`)
+  //   .then((response) => {
+  //     // console.log("el resultado del axios: ", response.data[0]);
+  //     return response.data[0];
+  //   })
+  //   .catch((error) => error);
 );
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialState,
   reducers: {
-    increment(state) {
-      state.counter++;
-    },
     decrement(state) {
       if (state.counter > 0) state.counter--;
     },
@@ -42,9 +64,6 @@ const cartSlice = createSlice({
   //     state.cartData.filter(
   //       (cartItem) => cartItem.id === action.payload.id
   //     );
-  //   },
-  //   showCounter(state) {
-  //     return state.counter;
   //   },
   //   toggleCart(state, action) {
   //     state.showCart = !state.showCart;
@@ -71,7 +90,8 @@ const cartSlice = createSlice({
     builder.addCase(addItemToCart.fulfilled, (state, action) => {
       state.loading = false;
       // Add this product to cartData array
-      state.cartData = action.payload;
+      // state.cartData = action.payload;
+      state.counter += action.payload.quantity;
       if (!state.cartData) state.cartData = [action.payload];
       else state.cartData.push(action.payload);
     });

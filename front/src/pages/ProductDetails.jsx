@@ -19,10 +19,7 @@ import { replaceUnderscore } from "../utils/editProductName";
 
 const ProductDetails = () => {
   let { productName } = useParams();
-  console.log("productName", productName);
-  // FIXME: 31/8 hay que flexibilizar search desde ruta "/:search" del back 
   productName = replaceUnderscore(productName.toUpperCase());
-  console.log(productName)
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.singleProduct.product);
@@ -31,8 +28,6 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(getSingleProduct(productName));
   }, []);
-
-  console.log("el product es:", product);
 
   if (singleProductState.loading) {
     return <div>Loading...</div>;
@@ -66,13 +61,15 @@ const ProductDetails = () => {
             <div className="text">{product.description}</div>
           </div>
           <div className="flex-row">
-            <span>Quantity:</span>
+            <span className="subtitle fs-5">Quantity:</span>
             <input
               type="number"
               defaultValue={1}
               min={1}
               placeholder="Qty"
               id="qtyInput"></input>
+              <div className="subtitle fs-5">Total:</div>
+              <div className="text  fs-5">{product.price}</div>
             <Button variant="contained">Add to Cart</Button>
             <CartActions />
           </div>
