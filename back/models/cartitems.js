@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   CartItems.init({
-    funko: DataTypes.JSONB
+
+    funko:{type: DataTypes.JSONB}
   }, {
     sequelize,
     modelName: 'CartItems',
