@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/userState";
+// Hooks
+import useAuth from "../hooks/useAuth";
 // Components - Commons
 import Logo from "../commons/Logo";
 import CartDrawer from "./CartDrawer";
@@ -24,7 +26,7 @@ const Navbar = () => {
   const[searchInput, setSearchInput] = useState('')
 
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.userData);
+  const user = useAuth();
   console.log("user desde navbar", user);
 
   let isAdmin;
@@ -76,10 +78,9 @@ const Navbar = () => {
           <Logo />
 
           <div className="contenedor">
-            {/* <Cart /> */}
             <CartDrawer />
 
-            {user && isAdmin ? (
+            {user && isAdmin === 'true' ? (
               <IconButton variant="primary">
                 <AdminPanelSettingsOutlinedIcon
                   sx={{ color: lightGreen[50], fontSize: 28 }}

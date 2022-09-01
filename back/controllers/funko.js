@@ -10,13 +10,6 @@ funko.all = (req, res) => {
     });
 };
 
-// [Op.or]: [
-//   {
-//     title: {
-//       [Op.like]: 'Boat%'
-//     }
-//   },
-
 funko.searchFunko = (req, res) => {
   const { search } = req.params;
   Funkos.findAll({

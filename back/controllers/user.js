@@ -27,6 +27,7 @@ user.login = (req, res) => {
         if (!isValid) return res.sendStatus(401);
 
         const payload = {
+          id: user.id,
           email: user.email,
           username: user.username,
           fullname: user.fullname,
