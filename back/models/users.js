@@ -14,50 +14,53 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      
+      Users.belongsToMany(models.CartItems, {
+        through: "UserCart",
+      });
     }
   }
-  Users.init({
-    username: {
-      type: DataTypes.STRING,
-      unique: true,
-    },
-    fullname: {
-      type: DataTypes.STRING,
-     /*  validate: {
+  Users.init(
+    {
+      username: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      fullname: {
+        type: DataTypes.STRING,
+        /*  validate: {
         isAlpha: {
           args: true,
           msg: "El nombre completo solo puede contener letras"
         } 
       }*/
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+        validate: {
+          isEmail: true,
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      admin: {
+        type: DataTypes.STRING,
+      },
+      salt: { type: DataTypes.STRING },
     },
-    email: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
-      validate: {
-        isEmail: true,
-      }
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    admin: {
-      type: DataTypes.STRING,
-      
-    },
-    salt: { type: DataTypes.STRING }
-  },
     {
       sequelize,
-      modelName: 'Users',
+      modelName: "Users",
       timestamps: false,
-    });
+    }
+  );
 
   //Hook para hacer el hash del registro de usuario
   Users.beforeCreate((user) => {
@@ -70,7 +73,6 @@ module.exports = (sequelize, DataTypes) => {
       user.password = hash;
     });
   });
-
 
   // TODO: 30/8 Agregar Hook de beforeUpdate para hashear la password cuando se la cambia (como el beforeCreate)
   // (no funciona simplemente cambiando el beforeCreate por beforeUpdate)
