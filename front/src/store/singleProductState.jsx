@@ -12,12 +12,7 @@ const initialState = {
 export const getSingleProduct = createAsyncThunk(
   "SINGLE-PRODUCT",
   (productName) => {
-    console.log("productName", productName)
-    //    return axios
-    //     .get(`https://dummyjson.com/products/${productId}`)
-    //     .then(response => response.data)
-    //     .catch((error) => error);
-
+    console.log("productName", productName);
     return axios
       .get(`http://localhost:3001/api/funkos/${productName}`)
       .then((response) => {

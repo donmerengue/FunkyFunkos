@@ -11,10 +11,11 @@ const carrito = {};
 
 //Agregar un producto al carrito
 carrito.addItem = async (req, res) => {
-  const {quantity, total, UserId} = req.body
+  const {quantity, total, userId} = req.body
+  console.log("REQ.BODY desde carrito.addItem",req.body);
   
   try {
-    const carrito = await CartItems.create({quantity,total, UserId})
+    const carrito = await CartItems.create({quantity,total, userId})
 
     res.json(carrito)
 

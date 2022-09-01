@@ -9,7 +9,9 @@ const OrderItems = require("../models").OrderItems
 cargarCarrito.getItemCart = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id);
     const funko = await Funkos.findOne({ where: { id }});
+    console.log(funko)
 
     return res.status(200).json(funko);
 

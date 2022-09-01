@@ -18,6 +18,9 @@ import {
 } from "@mui/material";
 import { StarBorder } from "@mui/icons-material";
 import edEin from "../assets/ed-ein.png"
+// Utils
+import {editProductName} from "../utils/editProductName";
+
 
 const ProductsGrid = () => {
   const productsList = useSelector((state) => state.products.productsList);
@@ -50,7 +53,7 @@ const ProductsGrid = () => {
           console.log("product de ProductsList", product)
           return (
             <Card key={product.id}>
-              <Link to={`/${product.name}/details`}>
+              <Link to={`/${editProductName(product.name)}/details`}>
                 <ImageListItem sx={{ height: "100% !important" }}>
                   <ImageListItemBar
                     sx={{
