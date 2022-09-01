@@ -14,17 +14,23 @@ import Paper from "@mui/material/Paper";
 // Imgs
 
 const Home = () => {
-  const user = useAuth();
+  const containerStyle = {
+    backgroundImage:
+      "url()",
+    height: "100vh",
+    backgroundSize: "cover",
+  };
 
-  const dispatch = useDispatch();
+  const user = useAuth();
+   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
   const products = useSelector((state) => state.products.productsList);
-
   const productsState = useSelector((state) => state.products);
 
+  
   if (productsState.loading) {
     return <div>Loading...</div>;
   }
@@ -33,14 +39,28 @@ const Home = () => {
   }
 
   return (
-    <Paper
-      sx={{
-        bgcolor: "background.main",
-      }}
-    >
-      <ProductsGrid products={products} />
+    <>
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://wc.wallpaperuse.com/wallp/30-302906_s.jpg"
+              height="360"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+        </div>
+      </div>
+      <div className="home" style={containerStyle}>
+        <ProductsGrid products={products} />
+      </div>
       <Footer />
-    </Paper>
+    </>
   );
 };
 
