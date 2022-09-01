@@ -17,6 +17,9 @@ module.exports = {
       serialNumber: {
         type: Sequelize.STRING
       },
+      collection: {
+        type: Sequelize.STRING
+      },
       price: {
         type: Sequelize.STRING
       },

@@ -48,13 +48,13 @@ const Navbar = () => {
         style={{ backgroundColor: "#DE822C" }}>
         <div className="container-fluid">
           <form className="d-flex" role="search">
-            {/* TODO: esto deberia desplegarse al cliquear el search 
+            {/* TODO: esto deberia desplegarse al cliquear el search  */}
             <input
               className="form-control me-2"
               type="search"
               placeholder="Encontra tu Funko Pop!"
               aria-label="Search"
-            /> */}
+            />
             <IconButton variant="primary" type="submit">
               <SearchIcon sx={{ color: lightGreen[50], fontSize: 28 }} />
             </IconButton>
