@@ -13,36 +13,34 @@ module.exports = {
           stock: "1",
           rating: "",
           image: "https://i.imgur.com/0Q1QXkS.png",
-         
         },
         {
           name: "STANY BERBEROVA",
           description:
             "Políglota Búlgara Girl, de corazón Argentino. Ser pensante y cauteloso. Interesada por la inteligencia Artificial.",
-            collection: "Team 4",
+          collection: "Team 4",
           serialNumber: "421",
           price: "$3.500",
           stock: "2",
           rating: "",
           image: "https://i.imgur.com/ta7xXAt.png",
-        }, 
+        },
         {
           name: "BAUTI PETRICH ",
           description:
             "Amante del mate como todo Entrerriano. Futuro Aussie boy. Cautivado por el back y por el estilo de vida digital.",
-            collection: "Team 4",
+          collection: "Team 4",
           serialNumber: "422",
           price: "$3.300",
           stock: "5",
           rating: "",
           image: "https://i.imgur.com/WRiVIx0.png",
-         
-        }, 
+        },
         {
           name: "MECHI RAMELLA",
           description:
             "Entusiasta del trabajo en equipo y del diseño, acentuado por su ojo arquitectonico curioso,inmerso en las aguas de este nuevo Universo del Hello World!",
-            collection: "Team 4",
+          collection: "Team 4",
           serialNumber: "423",
           price: "$3.000",
           stock: "3",
@@ -196,6 +194,5 @@ module.exports = {
       ], {});
   },
 
-  async down (queryInterface, Sequelize) {}
-
+  async down(queryInterface, Sequelize) {},
 };

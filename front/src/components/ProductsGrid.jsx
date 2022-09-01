@@ -57,7 +57,7 @@ const ProductsGrid = ({ products }) => {
                     title={product.price.toString().concat("$")}
                     actionIcon={
                       <Rating
-                        value={product.rating}
+                        value={parseFloat(product.rating)}
                         precision={0.5}
                         readOnly
                         sx={{ mr: "10px", color: "rgba(255,255,255,0.8)" }}
