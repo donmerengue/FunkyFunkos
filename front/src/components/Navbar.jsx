@@ -66,7 +66,7 @@ const Navbar = () => {
             {/* <Cart /> */}
             <CartDrawer />
 
-            {user && isAdmin ? (
+            {user && isAdmin === 'true' ? (
               <IconButton variant="primary">
                 <AdminPanelSettingsOutlinedIcon
                   sx={{ color: lightGreen[50], fontSize: 28 }}

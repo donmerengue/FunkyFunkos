@@ -1,7 +1,7 @@
 import React from "react";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../store/cartState";
+import { addItemToCart, cartActions } from "../store/cartState";
 // Material
 import { IconButton } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -40,7 +40,7 @@ const CartActions = () => {
   const incrementItemHandler = () => {
     dispatch(cartActions.increment());
 
-    dispatch(cartActions.loadCart(itemDataFake));
+    dispatch(addItemToCart(itemDataFake));
 
     // FIXME: cambiar itemDataFake por itemData cuando tenga la data del usuario y el producto
     // axios.post("/api/cart", { itemDataFake }).then((response) => {

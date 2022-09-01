@@ -48,24 +48,13 @@ const ProductDetails = () => {
           <img src={product.image} id="productImg" alt="funko" />
         </div>
 
-        {/*   const containerStyle = {
-   backgroundImage:
-     "url(https://fondosmil.com/fondo/17538.jpg)",
-   width: "6000px",
-   height: "6000px",
- };
-
- return (
-   <div style={containerStyle}>
-     <img src={singleProduct.thumbnail} /> */}
-
         <div className="flex-item2">
           <div>
             <div className="title">{product.name}</div>
             <div className="flex-row">
               <span className="text">{product.rating}</span>
               <Rating
-                value={product.rating}
+                value={parseFloat(product.rating)}
                 precision={0.5}
                 readOnly
                 sx={{ marginLeft: "10px" }}
