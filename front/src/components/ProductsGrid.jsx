@@ -65,7 +65,7 @@ const ProductsGrid = () => {
                     title={product.name}
                     position="top"
                   />
-                  <img
+                  <img className="imagen"
                     // src={product.thumbnail}
                     src={product.image}
                     // src={'https://i.imgur.com/0Q1QXkS.png'}
