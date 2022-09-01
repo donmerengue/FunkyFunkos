@@ -10,9 +10,11 @@ module.exports = {
       },
       
       funko: {
+      
         type: Sequelize.JSONB
       },
   
+
     });
   },
   async down(queryInterface, Sequelize) {

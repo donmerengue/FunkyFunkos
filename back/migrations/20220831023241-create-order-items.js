@@ -10,7 +10,11 @@ module.exports = {
       },
       quantity: {
         type: Sequelize.STRING
+
+      
+
       },
+
 
     });
   },
