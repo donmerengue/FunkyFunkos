@@ -5,20 +5,18 @@ const Users = require("../models").Users;
 const user = {}
 
 
-//registro
 user.register = (req, res) => {
-  const { email } = req.body;
+  const { email, username, fullname, address, password } = req.body;
   Users.findOrCreate({
     where: { email },
-    defaults: req.body 
+    defaults: { email, username, fullname, address, password }
   })
     .then((user) => res.status(201).json(user))
     .catch((err) => {
-      console.log(err)
-      res.status(404).json(err)});
+      console.log("ERORRORRRRRRRR", err)
+      res.status(500).json({ message: err.message })
+    })
 };
-
-
 
 user.login = (req, res) => {
   const { email, password } = req.body;
@@ -27,24 +25,22 @@ user.login = (req, res) => {
     if (!user) return res.sendStatus(401);
     user
       .validatePassword(password)
-
       .then((isValid) => {
         if (!isValid) return res.sendStatus(401);
 
         const payload = {
           email: user.email,
-          // TODO: faltaria username aca -> username: user.username
+          username: user.username,
           fullname: user.fullname,
           isAdmin: user.admin,
         };
         const token = generateToken(payload);
-
         res.cookie("token", token);
-        console.log(token);
-        console.log("res.cookie en user.login del back");
-
         res.json(payload); // envio informacion del usuario
-      });
+      })
+      .catch((err) => {
+        res.status(500).send({ message: err.message })
+      })
   });
 };
 
@@ -56,24 +52,24 @@ user.me = (req, res) => {
 
 user.logout = (req, res) => {
   res.clearCookie("token");
-  res.sendStatus(204);
+  res.status(204).json();//------->>>>
 };
 
-
-user.delet = (req, res) => {
+user.deleteUser = (req, res) => {
   Users.destroy({ where: { id: req.params.id } })
-    .then(() => res.sendStatus(204))
-    .catch((err) => console.log(err));
+    .then(() => res.status(204).json()) //------->>>>
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
-
 
 user.all = (req, res) => {
   Users.findAll()
     .then((users) => res.status(200).json(users))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
-
-
 
 user.put = (req, res) => {
   Users.update(
@@ -81,27 +77,47 @@ user.put = (req, res) => {
     { where: { id: req.params.id }, returning: true }
   )
     .then(() => {
-      Users.findOne({ where: { id: req.params.id } }).then((newName) =>
+      Users.findOne({ where: { id: req.params.id } })
+      .then((newName) =>
         res.json(newName)
       );
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
 
+user.putAdminFalse = (req, res) => {
+  Users.update(
+    { admin: false },
+    { where: { id: req.params.id }, returning: true }
+  )
+    .then(() => {
+      Users.findOne({ where: { id: req.params.id } })
+      .then((upDateAdm) =>
+        res.json(upDateAdm)
+      );
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
+};
 
-user.putAdmin = (req, res) => {
+user.putAdminTrue = (req, res) => {
   Users.update(
     { admin: true },
     { where: { id: req.params.id }, returning: true }
   )
     .then(() => {
-      Users.findOne({ where: { id: req.params.id } }).then((newName) =>
-        res.json(newName)
-      );
+      Users.findOne({ where: { id: req.params.id } })
+        .then((upDateAdm) =>
+          res.json(upDateAdm)
+        );
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
 };
-
 
 module.exports = user
 
