@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { getSingleProduct } from "../store/singleProductState";
+import { getSingleProduct } from "../store/SingleProductState";
 //material UI
 import Paper from "@mui/material/Paper";
 import { Rating } from "@mui/material";
@@ -14,25 +14,19 @@ import "./ProductDetails.css";
 //components
 import Footer from "../components/Footer";
 import CartActions from "../commons/CartActions";
-// Utils
-import { replaceUnderscore } from "../utils/editProductName";
 
 const ProductDetails = () => {
   let { productName } = useParams();
-  console.log("productName", productName);
-  // FIXME: 31/8 hay que flexibilizar search desde ruta "/:search" del back 
-  productName = replaceUnderscore(productName.toUpperCase());
-  console.log(productName)
-
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.singleProduct.product);
-  const singleProductState = useSelector((state) => state.singleProduct);
 
   useEffect(() => {
     dispatch(getSingleProduct(productName));
   }, []);
 
-  console.log("el product es:", product);
+  const singleProductState = useSelector((state) => state.singleProduct);
+  const product = useSelector((state) => {
+    return state.singleProduct.product;
+  });
 
   if (singleProductState.loading) {
     return <div>Loading...</div>;
@@ -83,7 +77,8 @@ const ProductDetails = () => {
               defaultValue={1}
               min={1}
               placeholder="Qty"
-              id="qtyInput"></input>
+              id="qtyInput"
+            ></input>
             <Button variant="contained">Add to Cart</Button>
             <CartActions />
           </div>

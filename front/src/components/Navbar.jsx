@@ -1,6 +1,7 @@
 import axios from "axios";
 // React
 import React from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +21,8 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import { message } from "antd";
 
 const Navbar = () => {
+  const[searchInput, setSearchInput] = useState('')
+
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.userData);
   console.log("user desde navbar", user);
@@ -28,6 +31,15 @@ const Navbar = () => {
   if (user) isAdmin = true;
 
   const dispatch = useDispatch();
+
+  const searchInputHandler = (e) => {
+    e.preventDefault()
+    setSearchInput(e.target.value)
+  }
+
+  const handleSearchSubmit = ()=>{
+    navigate(`search/${searchInput}`)
+  }
 
   const logOutHandler = () => {
     axios
@@ -47,17 +59,18 @@ const Navbar = () => {
         className="navbar shadow-lg rounded"
         style={{ backgroundColor: "#DE822C" }}>
         <div className="container-fluid">
-          <form className="d-flex" role="search">
+          <form className="d-flex" role="search" onSubmit={handleSearchSubmit}>
             {/* TODO: esto deberia desplegarse al cliquear el search  */}
-            <input
+            <input onChange={searchInputHandler}
               className="form-control me-2"
               type="search"
               placeholder="Encontra tu Funko Pop!"
               aria-label="Search"
             />
-            <IconButton variant="primary" type="submit">
-              <SearchIcon sx={{ color: lightGreen[50], fontSize: 28 }} />
-            </IconButton>
+              <IconButton variant="primary" type="submit">
+                <SearchIcon sx={{ color: lightGreen[50], fontSize: 28 }} />
+              </IconButton>
+         
           </form>
 
           <Logo />
