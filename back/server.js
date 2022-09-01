@@ -30,7 +30,7 @@ app.use(function (err, req, res, next) {
 });
 
 async function main() {
-  await sequelize.sync({force:true}).then(() => {
+  await sequelize.sync({force:false}).then(() => {
     app.listen(PORT, () => {
       console.log("Servidor iniciado en el puerto", PORT);
     });

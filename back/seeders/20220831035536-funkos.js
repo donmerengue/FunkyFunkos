@@ -8,7 +8,7 @@ module.exports = {
           name:"LUCAS PARMA",
           description: "Team Front. Vendedor de nuevas tecnologías y psicólogo. Fanático de la música y de quemar tostadas. Aviso: no usa turbante, es solo su cabellera indomable",
           collection: "Team 4",
-          serialNumber: "#420",
+          serialNumber: "420",
           price: "$3.200",
           stock: "1",
           rating: "",
@@ -20,7 +20,7 @@ module.exports = {
           description:
             "Políglota Búlgara Girl, de corazón Argentino. Ser pensante y cauteloso. Interesada por la inteligencia Artificial.",
             collection: "Team 4",
-          serialNumber: "#421",
+          serialNumber: "421",
           price: "$3.500",
           stock: "2",
           rating: "",
@@ -31,7 +31,7 @@ module.exports = {
           description:
             "Amante del mate como todo Entrerriano. Futuro Aussie boy. Cautivado por el back y por el estilo de vida digital.",
             collection: "Team 4",
-          serialNumber: "#422",
+          serialNumber: "422",
           price: "$3.300",
           stock: "5",
           rating: "",
@@ -43,7 +43,7 @@ module.exports = {
           description:
             "Entusiasta del trabajo en equipo y del diseño, acentuado por su ojo arquitectonico curioso,inmerso en las aguas de este nuevo Universo del Hello World!",
             collection: "Team 4",
-          serialNumber: "#423",
+          serialNumber: "423",
           price: "$3.000",
           stock: "3",
           rating: "",
@@ -55,7 +55,7 @@ module.exports = {
           description:
             "Oriundo del Paraguay y del Back! Gamer Boy de nacimiento, influenciado por su ADN japonés.",
             collection: "Team 4",
-          serialNumber: "#424",
+          serialNumber: "424",
           price: "$3.700",
           stock: "6",
           rating: "",
@@ -65,12 +65,12 @@ module.exports = {
           name: "MICA LOZANO",
           description: "Amante del Front. Chica misteriosa si las hay",
           collection: "Team 4",
-          serialNumber: "#425",
+          serialNumber: "425",
           price: "$3.800",
           stock: "1",
           rating: "",
           image: "https://i.imgur.com/QtnC1nW.png",
-        }, 
+        },         
       ], {});
   },
 

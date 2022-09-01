@@ -13,18 +13,26 @@ import Button from "@mui/material/Button";
 import "./ProductDetails.css";
 //components
 import Footer from "../components/Footer";
+import CartActions from "../commons/CartActions";
+// Utils
+import { replaceUnderscore } from "../utils/editProductName";
 
 const ProductDetails = () => {
-  const { productId } = useParams();
+  let { productName } = useParams();
+  console.log("productName", productName);
+  // FIXME: 31/8 hay que flexibilizar search desde ruta "/:search" del back 
+  productName = replaceUnderscore(productName.toUpperCase());
+  console.log(productName)
+
   const dispatch = useDispatch();
   const product = useSelector((state) => state.singleProduct.product);
   const singleProductState = useSelector((state) => state.singleProduct);
 
   useEffect(() => {
-    dispatch(getSingleProduct(productId));
+    dispatch(getSingleProduct(productName));
   }, []);
 
-  console.log("el product rating is:", product.rating);
+  console.log("el product es:", product);
 
   if (singleProductState.loading) {
     return <div>Loading...</div>;
@@ -37,11 +45,23 @@ const ProductDetails = () => {
     <div id="body">
       <Paper className="container" elevation={10}>
         <div className="flex-item1">
-          <img src={product.thumbnail} id="productImg" alt="funko" />
+          <img src={product.image} id="productImg" alt="funko" />
         </div>
+
+        {/*   const containerStyle = {
+   backgroundImage:
+     "url(https://fondosmil.com/fondo/17538.jpg)",
+   width: "6000px",
+   height: "6000px",
+ };
+
+ return (
+   <div style={containerStyle}>
+     <img src={singleProduct.thumbnail} /> */}
+
         <div className="flex-item2">
           <div>
-            <div className="title">{product.title}</div>
+            <div className="title">{product.name}</div>
             <div className="flex-row">
               <span className="text">{product.rating}</span>
               <Rating
@@ -63,9 +83,9 @@ const ProductDetails = () => {
               defaultValue={1}
               min={1}
               placeholder="Qty"
-              id="qtyInput"
-            ></input>
+              id="qtyInput"></input>
             <Button variant="contained">Add to Cart</Button>
+            <CartActions />
           </div>
         </div>
       </Paper>
