@@ -10,6 +10,7 @@ import SignUp from "./pages/Register";
 import SignIn from "./pages/Login";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/:productName/details" element={<ProductDetails />} />
         <Route path="/checkout/:id" element={<Checkout />} />
+        <Route path="/search/:searchString" element={<SearchResults/>}/>
       </Routes>
     </BrowserRouter>
   );

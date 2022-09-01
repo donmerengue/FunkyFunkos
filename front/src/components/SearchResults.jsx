@@ -1,25 +1,18 @@
-// React
 import React from "react";
 import { useEffect } from "react";
-// Redux
+import { useParams } from "react-router";
+//redux
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../store/ProductsState";
-// Components & Commons
-import Footer from "../components/Footer";
-import ProductsGrid from "../components/ProductsGrid";
-// Hooks
-import useAuth from "../hooks/useAuth";
-// Material
-import Paper from "@mui/material/Paper";
-// Imgs
+import { getSearchResults } from "../store/ProductsState";
+//components
+import ProductsGrid from "./ProductsGrid";
 
-const Home = () => {
-  const user = useAuth();
-
+const ResultadosBusqueda = () => {
+  const { searchString } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getSearchResults(searchString));
   }, []);
   const products = useSelector((state) => state.products.productsList);
 
@@ -31,17 +24,11 @@ const Home = () => {
   if (productsState.error) {
     return <div>Error: {productsState.error}</div>;
   }
-
   return (
-    <Paper
-      sx={{
-        bgcolor: "background.main",
-      }}
-    >
+    <div>
       <ProductsGrid products={products} />
-      <Footer />
-    </Paper>
+    </div>
   );
 };
 
-export default Home;
+export default ResultadosBusqueda;

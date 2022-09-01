@@ -1,4 +1,3 @@
-import { DirectionsBusFilledRounded } from "@mui/icons-material";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -12,19 +11,14 @@ const initialState = {
 export const getSingleProduct = createAsyncThunk(
   "SINGLE-PRODUCT",
   (productName) => {
-    console.log("productName", productName);
     return axios
       .get(`http://localhost:3001/api/funkos/${productName}`)
-      .then((response) => {
-        console.log("response", response);
-        console.log("el resultado del axios: ", response.data[0]);
-        return response.data[0];
-      })
+      .then((response) => response.data[0])
       .catch((error) => error);
   }
 );
 
-const singleProductSlice = createSlice({
+const SingleProductSlice = createSlice({
   name: "singleProduct",
   initialState,
   extraReducers: (builder) => {
@@ -41,4 +35,4 @@ const singleProductSlice = createSlice({
   },
 });
 
-export default singleProductSlice.reducer;
+export default SingleProductSlice.reducer;
