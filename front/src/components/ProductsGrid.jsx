@@ -39,22 +39,18 @@ const ProductsGrid = ({ products }) => {
                       background:
                         "linear-gradient(to bottom, rgba(221,112,44,1)0%, rgba(221,112,44,0.7)70%, rgba(221,112,44,0)100%)",
                     }}
-                    // title={product.title}
                     title={product.name}
                     subtitle={product.collection}
                     position="top"
                   />
                   <img className="imagen"
-                    // src={product.thumbnail}
                     src={product.image}
-                    // src={'https://i.imgur.com/0Q1QXkS.png'}
-                    // alt={product.title}
                     alt={product.name}
                     loading="lazy"
                     style={{ cursor: "pointer" }}
                   />
                   <ImageListItemBar
-                    title={product.price.toString().concat("$")}
+                    title={`$${product.price.toString()}`}
                     actionIcon={
                       <Rating
                         value={parseFloat(product.rating)}
