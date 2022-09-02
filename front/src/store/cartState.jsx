@@ -12,11 +12,11 @@ const initialState = {
 export const addItemToCart = createAsyncThunk(
   "ADD-ITEM-TO-CART",
   ([product, user]) => {
-    const quantity = 6;
+    const quantity = 1;
     const total = 1200;
     const userId = user.id;
-    console.log("PRODUCT", product);
-    console.log("USERRRR", user);
+    console.log("PRODUCT added to cart", product);
+    // console.log("USERRRR", user);
 
     return axios
       .post(
@@ -41,6 +41,24 @@ export const addItemToCart = createAsyncThunk(
       .catch((error) => error);
   }
 );
+
+export const loadCart = createAsyncThunk("LOAD-CART", (user) => {
+  // const userId = user.id;
+  // console.log("PRODUCT", product);
+  console.log("USERRRR", user);
+
+  return axios
+    .get(
+      `http://localhost:3001/api/cart/${user.id}`,
+      // { userId },
+      { withCredentials: true }
+    )
+    .then((response) => {
+      console.log("el resultado del axios de UserCart: ", response.data);
+      return response.data;
+    })
+    .catch((error) => error);
+});
 
 const cartSlice = createSlice({
   name: "cart",
@@ -76,6 +94,7 @@ const cartSlice = createSlice({
   //   },
   // },
   extraReducers: (builder) => {
+    // Add to cart
     builder.addCase(addItemToCart.pending, (state) => {
       state.loading = true;
     });
@@ -83,12 +102,20 @@ const cartSlice = createSlice({
       state.loading = false;
       // Add this product to cartData array
       // state.cartData = action.payload;
-      state.counter += action.payload.quantity;
-      if (!state.cartData) state.cartData = [action.payload];
-      else state.cartData.push(action.payload);
+      // state.counter += action.payload.quantity;
+      // if (!state.cartData) state.cartData = [action.payload];
+      // else state.cartData.push(action.payload);
     });
     builder.addCase(addItemToCart.rejected, (state, action) => {
       state.error = action.error.message;
+    });
+
+    builder.addCase(loadCart.fulfilled, (state, action) => {
+      state.loading = false;
+      state.counter = action.payload.length;
+      // Add this product to cartData array
+      // state.counter += action.payload.quantity;
+      state.cartData = action.payload
     });
   },
 });

@@ -16,9 +16,6 @@ const CartActions = () => {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.cart.showCart);
   const user = useAuth();
-  console.log("user desde cartActions", user);
-  // const user = useSelector((state) => state.user.userData);
-  // const counter = useSelector((state) => state.cart.counter);
 
   // Referencia a este producto
   const state = useSelector((state) => state);
