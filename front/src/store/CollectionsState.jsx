@@ -2,9 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  loading: false,
   collectionsList: [],
-  error: "",
 };
 
 export const getCollections = createAsyncThunk("GET-COLLECTIONS", () => {
@@ -14,21 +12,22 @@ export const getCollections = createAsyncThunk("GET-COLLECTIONS", () => {
     .catch((error) => error);
 });
 
+export const addCollection = createAsyncThunk("CREATE_COLLECTION", (data) => {
+  return axios
+    .post("http://localhost:3001/api/collection", data)
+    .then((response) => response.data)
+    .catch((error) => error);
+});
+
 const collectionsSlice = createSlice({
   name: "collections",
   initialState,
-  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCollections.pending, (state) => {
-      state.loading = true;
-    });
     builder.addCase(getCollections.fulfilled, (state, action) => {
-      state.loading = false;
       state.collectionsList = action.payload;
     });
-    builder.addCase(getCollections.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
+    builder.addCase(addCollection.fulfilled, (state, action) => {
+      console.log(action.payload);
     });
   },
 });

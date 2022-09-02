@@ -10,10 +10,9 @@ collection.allCollection = (req, res) => {
 };
 
 collection.addCollection = (req, res) => {
-    const { name, quantity } = req.body;
+    const { name } = req.body;
     Collections.create({
-        name,
-        quantity,
+        name
     })
         .then((collection) => res.status(204).json(collection))
         .catch((err) => {

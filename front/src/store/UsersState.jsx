@@ -2,9 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  loading: false,
   usersList: [],
-  error: "",
 };
 
 export const getUsers = createAsyncThunk("GET-USERS", () => {
@@ -19,16 +17,8 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getUsers.pending, (state) => {
-      state.loading = true;
-    });
     builder.addCase(getUsers.fulfilled, (state, action) => {
-      state.loading = false;
       state.usersList = action.payload;
-    });
-    builder.addCase(getUsers.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
     });
   },
 });
