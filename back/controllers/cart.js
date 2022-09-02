@@ -44,6 +44,7 @@ cart.addItemCart = async (req, res) => {
     });
     const cartItemId = updateFunko[0].dataValues.id;
 
+    // Actualizar tabla intermedia
     const updatedUserCart = await user.addCartItems(cartItemId);
 
     console.log("Updated UserCart", updatedUserCart);
