@@ -23,11 +23,10 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import { message } from "antd";
 
 const Navbar = () => {
-  const[searchInput, setSearchInput] = useState('')
+  const [searchInput, setSearchInput] = useState("");
 
   const navigate = useNavigate();
   const user = useAuth();
-  console.log("user desde navbar", user);
 
   let isAdmin;
   if (user) isAdmin = true;
@@ -35,13 +34,13 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const searchInputHandler = (e) => {
-    e.preventDefault()
-    setSearchInput(e.target.value)
-  }
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
 
-  const handleSearchSubmit = ()=>{
-    navigate(`search/${searchInput}`)
-  }
+  const handleSearchSubmit = () => {
+    navigate(`search/${searchInput}`);
+  };
 
   const logOutHandler = () => {
     axios
@@ -54,7 +53,6 @@ const Navbar = () => {
         navigate("/");
       });
   };
-  console.log("usuariooooo:", user)
 
   return (
     <div>
@@ -62,18 +60,21 @@ const Navbar = () => {
         className="navbar shadow-lg rounded"
         style={{ backgroundColor: "#DE822C" }}>
         <div className="container-fluid">
-          <form className="d-flex" role="search" onSubmit={handleSearchSubmit}>
+          <form
+            className="d-flex"
+            role="search"
+            onSubmit={handleSearchSubmit}>
             {/* TODO: esto deberia desplegarse al cliquear el search  */}
-            <input onChange={searchInputHandler}
+            <input
+              onChange={searchInputHandler}
               className="form-control me-2"
               type="search"
               placeholder="Encontra tu Funko Pop!"
               aria-label="Search"
             />
-              <IconButton variant="primary" type="submit">
-                <SearchIcon sx={{ color: lightGreen[50], fontSize: 28 }} />
-              </IconButton>
-         
+            <IconButton variant="primary" type="submit">
+              <SearchIcon sx={{ color: lightGreen[50], fontSize: 28 }} />
+            </IconButton>
           </form>
 
           <Logo />
@@ -81,7 +82,7 @@ const Navbar = () => {
           <div className="contenedor">
             <CartDrawer />
 
-            {user && user.admin === 'true' ? (
+            {user && user.admin === "true" ? (
               <Link to="user/admin">
                 <IconButton variant="primary">
                   <AdminPanelSettingsOutlinedIcon

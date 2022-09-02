@@ -11,7 +11,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { lightGreen } from "@mui/material/colors";
 
 const CartIcon = ({ toggleDrawer, inCart }) => {
-  console.log(inCart);
+  // console.log(inCart);
   const anchor = "right";
   const dispatch = useDispatch();
   // Cart State

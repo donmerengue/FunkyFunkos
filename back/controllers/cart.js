@@ -7,9 +7,9 @@ const Funkos = require("../models").Funkos;
 const OrderItems = require("../models").OrderItems;
 const Users = require("../models").Users;
 
-// TODO: asegurar ruta con validateCookie,
 cart.getItemCart = async (req, res) => {
   try {
+    console.log('le estas pegando a la ruta de getItemCart')
     const userId = req.params.id;
     console.log(userId);
 
@@ -62,36 +62,9 @@ cart.addItemCart = async (req, res) => {
   }
 };
 
-// RUTAS DE FAVORITOS en http://localhost:3001/api/me/favorites
-//Agregar favoritos
-/* router.put("/me/favorites", validateCookie, (req, res) => {
-  // console.log("REQ.COOKIES desde /me/favorites", req.cookies)
-  console.log("llega a .PUT de /me/favorites");
-  // console.log("REQ.QUERY", req.query)
-  // console.log("cookie user", req.user);
-  const userId = req.user.id;
-  const { mediaId, mediaName, mediaType } = req.query;
-
-  User.findByPk(userId).then((user) => {
-    Favorite.findOrCreate({
-      where: { mediaId },
-      defaults: { mediaId, mediaName, mediaType },
-    })
-      .then((favorite) => {
-        const favoriteId = favorite[0].dataValues.id;
-        return [user, favoriteId];
-      })
-      .then(([user, favoriteId]) => user.addFavorite(favoriteId))
-      .then(() => res.sendStatus(200))
-      .catch((err) => {
-        console.log(err);
-        res.status(500).send(err);
-      });
-  });
-}); */
-
 cart.deleteCart = async (req, res) => {
   try {
+    const deletecart = await OrderItems.bulkdestroy()
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }

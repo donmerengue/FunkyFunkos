@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../store/cartState";
+import { loadCart, cartActions } from "../store/cartState";
 // Components
 import CartIcon from "../commons/CartIcon";
 import CartItem from "../commons/CartItem";
@@ -16,12 +16,21 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Drawer, Divider, ListItemText } from "@mui/material/";
 import { Grid, Card, CardContent, CardActions } from "@mui/material";
+// Hooks
+import useAuth from "../hooks/useAuth";
 
 export default function CartDrawer() {
   // Cart State
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.cart.showCart);
   const cartCounter = useSelector((state) => state.cart.counter);
+  const user = useAuth();
+
+  // Get cart data
+  useEffect(() => {
+    console.log("gatilla useEffect")
+    dispatch(loadCart(user));
+  }, []);
 
   // Drawer properties & logic
   const [state, setState] = React.useState({
@@ -44,6 +53,8 @@ export default function CartDrawer() {
       return;
     }
     setState({ ...state, [anchor]: open });
+    console.log("gatilla udispatch loadCart")
+    dispatch(loadCart(user));
     // dispatch(cartActions.toggleCart());
   };
 
