@@ -14,15 +14,8 @@ import Paper from "@mui/material/Paper";
 // Imgs
 
 const Home = () => {
-  const containerStyle = {
-    backgroundImage:
-      "url()",
-    height: "100vh",
-    backgroundSize: "cover",
-  };
-
   const user = useAuth();
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -40,14 +33,13 @@ const Home = () => {
           <div class="carousel-item active">
             <img
               src="https://wc.wallpaperuse.com/wallp/30-302906_s.jpg"
-              height="360"
               class="d-block w-100"
               alt="..."
             />
           </div>
         </div>
       </div>
-      <div className="home" style={containerStyle}>
+      <div className="home">
         <ProductsGrid products={products} />
       </div>
       <Footer />
