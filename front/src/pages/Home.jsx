@@ -24,6 +24,7 @@ const Home = () => {
   const user = useAuth();
    const dispatch = useDispatch();
 
+   
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);

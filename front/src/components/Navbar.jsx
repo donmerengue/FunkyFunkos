@@ -45,7 +45,7 @@ const Navbar = () => {
 
   const logOutHandler = () => {
     axios
-      .get("http://localhost:3001/api/user/login", {
+      .get("http://localhost:3001/api/user/logout", {
         withCredentials: true,
       })
       .then((response) => {

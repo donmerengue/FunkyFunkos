@@ -31,7 +31,7 @@ user.login = (req, res) => {
           email: user.email,
           username: user.username,
           fullname: user.fullname,
-          admin: user.admin
+          admin: user.admin,
         };
         const token = generateToken(payload);
         res.cookie("token", token);
@@ -48,8 +48,11 @@ user.me = (req, res) => {
 };
 
 user.logout = (req, res) => {
+  console.log('loggin out')
+  // console.log(req.cookie())
+  // console.log(req.user)
   res.clearCookie("token");
-  res.status(204).json(); //------->>>>
+  res.status(204).json("User logged out"); //------->>>>
 };
 
 user.deleteUser = (req, res) => {
@@ -101,9 +104,11 @@ user.putAdminTrue = (req, res) => {
     { where: { id: req.params.id }, returning: true }
   )
     .then(() => {
-      Users.findOne({ where: { id: req.params.id } }).then((upDateAdm) =>
-        res.json(upDateAdm)
-      );
+      Users.findOne({ where: { id: req.params.id } }).then((upDateAdm) => {
+        console.log(upDateAdm.admin)
+        console.log(typeof upDateAdm.admin);
+        res.json(upDateAdm.admin);
+      });
     })
     .catch((err) => {
       res.status(500).json({ message: err.message });
