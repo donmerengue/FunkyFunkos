@@ -40,14 +40,6 @@ export const addItemToCart = createAsyncThunk(
       })
       .catch((error) => error);
   }
-
-  // return axios
-  //   .get(`http://localhost:3001/api/funkos/${product.name}`)
-  //   .then((response) => {
-  //     // console.log("el resultado del axios: ", response.data[0]);
-  //     return response.data[0];
-  //   })
-  //   .catch((error) => error);
 );
 
 const cartSlice = createSlice({
