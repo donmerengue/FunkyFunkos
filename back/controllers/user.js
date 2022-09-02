@@ -31,6 +31,7 @@ user.login = (req, res) => {
           email: user.email,
           username: user.username,
           fullname: user.fullname,
+          admin: user.admin
         };
         const token = generateToken(payload);
         res.cookie("token", token);
