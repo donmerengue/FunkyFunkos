@@ -5,10 +5,10 @@ const Users = require("../models").Users;
 const user = {};
 
 user.register = (req, res) => {
-  const { email, username, fullname, address, password } = req.body;
+  const { email, username, fullname, address, password, admin } = req.body;
   Users.findOrCreate({
     where: { email },
-    defaults: { email, username, fullname, address, password },
+    defaults: { email, username, fullname, address, password, admin },
   })
     .then((user) => res.status(201).json(user))
     .catch((err) => {
@@ -31,6 +31,7 @@ user.login = (req, res) => {
           email: user.email,
           username: user.username,
           fullname: user.fullname,
+          admin: user.admin
         };
         const token = generateToken(payload);
         res.cookie("token", token);

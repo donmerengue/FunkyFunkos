@@ -28,15 +28,6 @@ const Home = () => {
     dispatch(getAllProducts());
   }, []);
   const products = useSelector((state) => state.products.productsList);
-  const productsState = useSelector((state) => state.products);
-
-  
-  if (productsState.loading) {
-    return <div>Loading...</div>;
-  }
-  if (productsState.error) {
-    return <div>Error: {productsState.error}</div>;
-  }
 
   return (
     <>

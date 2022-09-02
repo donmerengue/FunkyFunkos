@@ -54,6 +54,7 @@ const Navbar = () => {
         navigate("/");
       });
   };
+  console.log("usuariooooo:", user)
 
   return (
     <div>
@@ -80,12 +81,14 @@ const Navbar = () => {
           <div className="contenedor">
             <CartDrawer />
 
-            {user && isAdmin === 'true' ? (
-              <IconButton variant="primary">
-                <AdminPanelSettingsOutlinedIcon
-                  sx={{ color: lightGreen[50], fontSize: 28 }}
-                />
-              </IconButton>
+            {user && user.admin === 'true' ? (
+              <Link to="user/admin">
+                <IconButton variant="primary">
+                  <AdminPanelSettingsOutlinedIcon
+                    sx={{ color: lightGreen[50], fontSize: 28 }}
+                  />
+                </IconButton>
+              </Link>
             ) : (
               <IconButton variant="primary">
                 <AccountBoxIcon

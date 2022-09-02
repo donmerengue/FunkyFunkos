@@ -23,17 +23,10 @@ const ProductDetails = () => {
     dispatch(getSingleProduct(productName));
   }, []);
 
-  const singleProductState = useSelector((state) => state.singleProduct);
   const product = useSelector((state) => {
     return state.singleProduct.product;
   });
 
-  if (singleProductState.loading) {
-    return <div>Loading...</div>;
-  }
-  if (singleProductState.error) {
-    return <div>Error: {singleProductState.error}</div>;
-  }
 
   return (
     <div id="body">
