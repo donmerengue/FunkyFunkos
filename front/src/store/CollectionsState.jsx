@@ -12,9 +12,10 @@ export const getCollections = createAsyncThunk("GET-COLLECTIONS", () => {
     .catch((error) => error);
 });
 
-export const addCollection = createAsyncThunk("CREATE_COLLECTION", (data) => {
+export const addCollection = createAsyncThunk("CREATE_COLLECTION", (name) => {
+  console.log("collection input desde el axios:", name)
   return axios
-    .post("http://localhost:3001/api/collection", data)
+    .post("http://localhost:3001/api/collection", {name})
     .then((response) => response.data)
     .catch((error) => error);
 });

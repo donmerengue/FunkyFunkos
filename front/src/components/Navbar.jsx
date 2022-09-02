@@ -81,11 +81,13 @@ const Navbar = () => {
             <CartDrawer />
 
             {user && isAdmin === 'true' ? (
-              <IconButton variant="primary">
-                <AdminPanelSettingsOutlinedIcon
-                  sx={{ color: lightGreen[50], fontSize: 28 }}
-                />
-              </IconButton>
+              <Link to="user/admin">
+                <IconButton variant="primary">
+                  <AdminPanelSettingsOutlinedIcon
+                    sx={{ color: lightGreen[50], fontSize: 28 }}
+                  />
+                </IconButton>
+              </Link>
             ) : (
               <IconButton variant="primary">
                 <AccountBoxIcon

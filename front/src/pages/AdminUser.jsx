@@ -25,6 +25,7 @@ const AdminUser = () => {
   }
   const submitCollectionHandler = (e) =>{
     e.preventDefault()
+    console.log("el collection input desde el handler:", collectionInput)
     dispatch(addCollection(collectionInput))
   }
 
@@ -49,6 +50,14 @@ const AdminUser = () => {
           </li>
         );
       })}
+      <h2>Add Products</h2>
+      <form>
+        <input type="text" placeholder="Name"></input>
+        <input type="text" placeholder="Description"></input>
+        <input type="text" placeholder="Collection"></input>
+        <input type="text" placeholder="Stock"></input>
+
+      </form>
     </div>
   );
 };

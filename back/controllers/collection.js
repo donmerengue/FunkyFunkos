@@ -10,6 +10,7 @@ collection.allCollection = (req, res) => {
 };
 
 collection.addCollection = (req, res) => {
+    console.log("req body", req.body)
     const { name } = req.body;
     Collections.create({
         name
