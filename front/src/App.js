@@ -10,7 +10,8 @@ import SignUp from "./pages/Register";
 import SignIn from "./pages/Login";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
-import SearchResults from "./components/SearchResults";
+import SearchResults from "./pages/SearchResults";
+import AdminUser from "./pages/AdminUser";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/:productName/details" element={<ProductDetails />} />
         <Route path="/checkout/:id" element={<Checkout />} />
         <Route path="/search/:searchString" element={<SearchResults/>}/>
+        <Route path="/user/admin" element={<AdminUser/>}/>
       </Routes>
     </BrowserRouter>
   );

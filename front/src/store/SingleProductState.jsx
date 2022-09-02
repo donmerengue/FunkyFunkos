@@ -30,6 +30,7 @@ const SingleProductSlice = createSlice({
       state.product = action.payload;
     });
     builder.addCase(getSingleProduct.rejected, (state, action) => {
+      state.loading = false;
       state.error = action.error.message;
     });
   },

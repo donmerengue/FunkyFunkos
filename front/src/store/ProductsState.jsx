@@ -46,6 +46,7 @@ const ProductsSlice = createSlice({
       state.productsList = action.payload;
     });
     builder.addCase(getAllProducts.rejected, (state, action) => {
+      state.loading = false
       state.error = action.error.message;
     });
     builder.addCase(getSearchResults.pending, (state) => {
@@ -56,6 +57,7 @@ const ProductsSlice = createSlice({
       state.productsList = action.payload;
     });
     builder.addCase(getSearchResults.rejected, (state, action) => {
+      state.loading=false
       state.error = action.error.message;
     });
   },

@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchResults } from "../store/ProductsState";
 //components
-import ProductsGrid from "./ProductsGrid";
+import ProductsGrid from "../components/ProductsGrid";
 
 const ResultadosBusqueda = () => {
   const { searchString } = useParams();
